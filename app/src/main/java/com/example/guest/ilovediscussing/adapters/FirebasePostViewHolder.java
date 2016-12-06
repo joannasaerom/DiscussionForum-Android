@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.database.DatabaseUtilsCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -37,24 +38,33 @@ public class FirebasePostViewHolder extends RecyclerView.ViewHolder implements V
         TextView mPostPreviewTextView = (TextView) mView.findViewById(R.id.postPreviewTextView);
         mPostTitleTextView.setText(post.getTitle());
         mPostPreviewTextView.setText(post.getContent());
+        Log.d("FirebasePostViewHolder", "bindPost Called!");
     }
 
     @Override
     public void onClick(View view) {
         final ArrayList<Post> posts = new ArrayList<>();
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_POSTS);
+
+        DatabaseReference ref = FirebaseDatabase
+                .getInstance()
+                .getReference(Constants.FIREBASE_CHILD_POSTS);
+
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
+                int i = 0;
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     posts.add(snapshot.getValue(Post.class));
+                    Log.d("FirebasePostViewHolder", "Posts: " + posts.get(i).getTitle());
+                    i++;
                 }
 
                 int itemPosition = getLayoutPosition();
 
 //                Intent intent = new Intent(mContext, PostDetailsActivity.class);
 //                intent.putExtra("category", Parcels.wrap(posts.get(itemPosition)));
-//                
+//
 //                mContext.startActivity(intent);
             }
 
