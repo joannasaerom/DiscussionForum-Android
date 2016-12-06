@@ -1,8 +1,8 @@
 package com.example.guest.ilovediscussing.models;
 
-/**
- * Created by Guest on 12/5/16.
- */
+import org.parceler.Parcel;
+
+@Parcel
 public class User {
     String username;
     String password;

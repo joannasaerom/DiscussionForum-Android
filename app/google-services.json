@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "673513793466",
+    "firebase_url": "https://discussionforum-e445b.firebaseio.com",
+    "project_id": "discussionforum-e445b",
+    "storage_bucket": "discussionforum-e445b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:673513793466:android:57a5fad77c86d00d",
+        "android_client_info": {
+          "package_name": "com.example.guest.ilovediscussing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "673513793466-11lerir1v16l0njmsml5c3ppjrvoc4iu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.guest.ilovediscussing",
+            "certificate_hash": "2A89A0D412A654CC9B5E322D6B02F30A753D0CA4"
+          }
+        },
+        {
+          "client_id": "673513793466-rrfkt49o50hj5phd1m48r4k6jm8gdvr6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9CxvItZaUZhca3_dA0UtWQy3flSSOzKA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "673513793466-rrfkt49o50hj5phd1m48r4k6jm8gdvr6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

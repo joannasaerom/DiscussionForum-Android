@@ -1,10 +1,10 @@
 package com.example.guest.ilovediscussing.models;
 
+import org.parceler.Parcel;
+
 import java.util.Date;
 
-/**
- * Created by Guest on 12/5/16.
- */
+@Parcel
 public class Comment {
     String content;
     Date date;

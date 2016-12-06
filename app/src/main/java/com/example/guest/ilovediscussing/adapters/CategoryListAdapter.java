@@ -2,7 +2,9 @@ package com.example.guest.ilovediscussing.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.guest.ilovediscussing.R;
@@ -23,6 +25,23 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
     public CategoryListAdapter(Context context, ArrayList<Category> categories){
         mContext = context;
         mCategories = categories;
+    }
+
+    @Override
+    public CategoryListAdapter.CategoryViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_list_item, parent, false);
+        CategoryViewHolder viewHolder = new CategoryViewHolder(view);
+        return viewHolder;
+    }
+
+    @Override
+    public void onBindViewHolder(CategoryListAdapter.CategoryViewHolder holder, int position){
+        holder.bindCategory(mCategories.get(position));
+    }
+
+    @Override
+    public int getItemCount() {
+        return mCategories.size();
     }
 
     public class CategoryViewHolder extends RecyclerView.ViewHolder {
