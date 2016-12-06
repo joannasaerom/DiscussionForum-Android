@@ -3,6 +3,7 @@ package com.example.guest.ilovediscussing.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -10,6 +11,7 @@ import com.example.guest.ilovediscussing.Constants;
 import com.example.guest.ilovediscussing.R;
 import com.example.guest.ilovediscussing.models.Category;
 import com.example.guest.ilovediscussing.ui.CategoryListActivity;
+import com.example.guest.ilovediscussing.ui.PostActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -56,9 +58,10 @@ public class FirebaseCategoryViewHolder extends RecyclerView.ViewHolder implemen
 
                 int itemPosition = getLayoutPosition();
 
-                Intent intent = new Intent(mContext, CategoryListActivity.class);
-                intent.putExtra("position", itemPosition + "");
-                intent.putExtra("categories", Parcels.wrap(categories));
+
+                Intent intent = new Intent(mContext, PostActivity.class);
+//                intent.putExtra("position", itemPosition + "");
+                intent.putExtra("category", Parcels.wrap(categories.get(itemPosition)));
 
                 mContext.startActivity(intent);
             }
