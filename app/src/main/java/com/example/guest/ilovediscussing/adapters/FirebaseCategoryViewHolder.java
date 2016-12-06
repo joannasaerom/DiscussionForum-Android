@@ -21,9 +21,9 @@ import org.parceler.Parcels;
 import java.util.ArrayList;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 
 public class FirebaseCategoryViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-    @Bind(R.id.categoryTextView) TextView mCategoryTextView;
 
     View mView;
     Context mContext;
@@ -33,10 +33,12 @@ public class FirebaseCategoryViewHolder extends RecyclerView.ViewHolder implemen
         mView = itemView;
         mContext = itemView.getContext();
         itemView.setOnClickListener(this);
+
+
     }
 
     public void bindCategory(Category category){
-
+        TextView mCategoryTextView = (TextView) mView.findViewById(R.id.categoryTextView);
         mCategoryTextView.setText(category.getName());
     }
 
