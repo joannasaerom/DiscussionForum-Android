@@ -9,6 +9,7 @@ import java.util.List;
 public class Category {
     String name;
     List<Post> posts = new ArrayList<>();
+    String pushId;
 
     public Category() {}
 
@@ -25,4 +26,14 @@ public class Category {
     public List<Post> getPosts() {
         return posts;
     }
+
+    public String getPushId(){
+        return pushId;
+    }
+
+    public void setPushId(String pushId){
+        this.pushId = pushId;
+    }
+
+
 }

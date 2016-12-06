@@ -14,7 +14,6 @@ import android.widget.EditText;
 
 import com.example.guest.ilovediscussing.Constants;
 import com.example.guest.ilovediscussing.R;
-import com.example.guest.ilovediscussing.adapters.CategoryListAdapter;
 import com.example.guest.ilovediscussing.adapters.FirebaseCategoryViewHolder;
 import com.example.guest.ilovediscussing.models.Category;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -33,7 +32,6 @@ public class CategoryListActivity extends AppCompatActivity implements View.OnCl
     @Bind(R.id.categoryList) RecyclerView mCategoryList;
     @Bind(R.id.addCategoryButton) Button mAddCategoryButton;
     @Bind(R.id.categoryName) EditText mCategoryName;
-    private CategoryListAdapter mAdapter;
     private DatabaseReference mCategoryReference;
     private ValueEventListener mCategoryReferenceListener;
     private FirebaseRecyclerAdapter mFirebaseAdapter;
@@ -94,13 +92,17 @@ public class CategoryListActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View view) {
         if (view == mAddCategoryButton){
             String name = mCategoryName.getText().toString();
-            Category category = new Category(name);
 
+            if(!name.equals("")) {
+                Category category = new Category(name);
+                DatabaseReference pushRef = mCategoryReference.push();
+                String pushId = pushRef.getKey();
+                category.setPushId(pushId);
+                pushRef.setValue(category);
 
-            saveCategoryToFirebase(category);
-            finish();
-            startActivity(getIntent());
-
+                finish();
+                startActivity(getIntent());
+            }
 
         }
     }
@@ -111,7 +113,4 @@ public class CategoryListActivity extends AppCompatActivity implements View.OnCl
         mFirebaseAdapter.cleanup();
     }
 
-    public void saveCategoryToFirebase(Category category){
-        mCategoryReference.push().setValue(category);
-    }
 }
