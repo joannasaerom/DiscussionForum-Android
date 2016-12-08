@@ -85,7 +85,7 @@ public class CategoryListActivity extends AppCompatActivity implements View.OnCl
         mCategoryList.setHasFixedSize(true);
         mCategoryList.setLayoutManager(new LinearLayoutManager(this));
         mCategoryList.setAdapter(mFirebaseAdapter);
-        Log.d("CategoryListActivity", "TEST: " + mFirebaseAdapter);
+
     }
 
     @Override
