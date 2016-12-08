@@ -10,13 +10,14 @@ public class Comment {
     Date date;
     String pushId;
     String postId;
-    String uId;
+
 
     public Comment(){}
 
-    public Comment(String content, Date date) {
+    public Comment(String content, String postId) {
         this.content = content;
         this.date = date;
+        this.postId = postId;
     }
 
     public String getContent() {
@@ -33,5 +34,21 @@ public class Comment {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getPushId() {
+        return pushId;
+    }
+
+    public void setPushId(String pushId) {
+        this.pushId = pushId;
+    }
+
+    public String getPostId() {
+        return postId;
+    }
+
+    public void setPostId(String postId) {
+        this.postId = postId;
     }
 }

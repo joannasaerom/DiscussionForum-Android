@@ -10,18 +10,48 @@
         android:text="Post Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:id="@+id/postTitle"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="51dp"
-        android:id="@+id/postTitle" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp" />
 
     <TextView
         android:text="Post details"
         android:inputType="textMultiLine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:id="@+id/postDetails"
         android:layout_below="@+id/postTitle"
-        android:layout_marginTop="10dp"
-        android:id="@+id/postDetails" />
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:hint="Comment goes here"
+        android:layout_below="@+id/postDetails"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="21dp"
+        android:id="@+id/commentEditText" />
+
+    <Button
+        android:text="Add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/addComment"
+        android:layout_alignTop="@+id/commentEditText"
+        android:layout_toRightOf="@+id/commentEditText"
+        android:layout_toEndOf="@+id/commentEditText" />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/commentEditText"
+        android:id="@+id/commentList"/>
 </RelativeLayout>
