@@ -93,16 +93,18 @@ public class CategoryListActivity extends AppCompatActivity implements View.OnCl
         if (view == mAddCategoryButton){
             String name = mCategoryName.getText().toString();
 
-            if(!name.equals("")) {
-                Category category = new Category(name);
-                DatabaseReference pushRef = mCategoryReference.push();
-                String pushId = pushRef.getKey();
-                category.setPushId(pushId);
-                pushRef.setValue(category);
-
-                finish();
-                startActivity(getIntent());
+            if (name.equals("")){
+                mCategoryName.setError("Please enter a category name");
+                return;
             }
+
+            Category category = new Category(name);
+            DatabaseReference pushRef = mCategoryReference.push();
+            String pushId = pushRef.getKey();
+            category.setPushId(pushId);
+            pushRef.setValue(category);
+
+            startActivity(getIntent());
 
         }
     }

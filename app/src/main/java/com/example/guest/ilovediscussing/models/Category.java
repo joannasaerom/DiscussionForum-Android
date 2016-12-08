@@ -8,7 +8,6 @@ import java.util.List;
 @Parcel
 public class Category {
     String name;
-    List<Post> posts = new ArrayList<>();
     String pushId;
 
     public Category() {}
@@ -23,9 +22,6 @@ public class Category {
         return name;
     }
 
-    public List<Post> getPosts() {
-        return posts;
-    }
 
     public String getPushId(){
         return pushId;

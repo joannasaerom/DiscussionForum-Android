@@ -8,6 +8,9 @@ import java.util.Date;
 public class Comment {
     String content;
     Date date;
+    String pushId;
+    String postId;
+    String uId;
 
     public Comment(){}
 

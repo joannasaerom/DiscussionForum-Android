@@ -20,48 +20,13 @@ import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
-public class FirebasePostViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class FirebasePostViewHolder {
 
-    View mView;
-    Context mContext;
-
-    public FirebasePostViewHolder(View itemView) {
-        super(itemView);
-        mView = itemView;
-        mContext = itemView.getContext();
-        itemView.setOnClickListener(this);
-    }
-
-    public void bindPost(Post post) {
-        TextView mPostTitleTextView = (TextView) mView.findViewById(R.id.postTitleTextView);
-        TextView mPostPreviewTextView = (TextView) mView.findViewById(R.id.postPreviewTextView);
-        mPostTitleTextView.setText(post.getTitle());
-        mPostPreviewTextView.setText(post.getContent());
-    }
-
-    @Override
-    public void onClick(View view) {
-        final ArrayList<Post> posts = new ArrayList<>();
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_POSTS);
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    posts.add(snapshot.getValue(Post.class));
-                }
-
-                int itemPosition = getLayoutPosition();
-
-//                Intent intent = new Intent(mContext, PostDetailsActivity.class);
-//                intent.putExtra("category", Parcels.wrap(posts.get(itemPosition)));
-//                
-//                mContext.startActivity(intent);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }
 }
+//public class FirebasePostViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+//
+//    @Override
+//    public void onClick(View view) {
+//
+//    }
+//}

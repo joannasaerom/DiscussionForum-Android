@@ -28,22 +28,13 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
     private DatabaseReference mPostReference;
     private DatabaseReference mCategoryReference;
     private Category mCategory;
+    private String mCategoryPushId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_post);
         ButterKnife.bind(this);
-
-        mCategory = Parcels.unwrap(getIntent().getParcelableExtra("category"));
-
-//        mCategoryReference = FirebaseDatabase
-//                .getInstance()
-//                .getReference()
-//                .child(Constants.FIREBASE_CHILD_CATEGORIES);
-
-
-
 
         mAddPostButton.setOnClickListener(this);
     }
@@ -52,26 +43,38 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View view) {
         if (view == mAddPostButton){
 
+            mCategory = Parcels.unwrap(getIntent().getParcelableExtra("category"));
+            mCategoryPushId = mCategory.getPushId();
+
             String title = mPostTitle.getText().toString();
             String content = mPostContent.getText().toString();
-            String categoryId = mCategory.getPushId();
-            Post newPost = new Post(title, content, categoryId);
+
+            if (title.equals("")){
+                mPostTitle.setError("Please enter a title");
+                return;
+            }
+            if (content.equals("")){
+                mPostContent.setError("Please enter details about the post");
+                return;
+            }
+
+            Post post = new Post(title, content);
 
             mPostReference = FirebaseDatabase
                     .getInstance()
-                    .getReference(Constants.FIREBASE_CHILD_POSTS);
-
+                    .getReference(Constants.FIREBASE_CHILD_POSTS)
+                    .child(mCategoryPushId);
 
             DatabaseReference pushRef = mPostReference.push();
             String pushId = pushRef.getKey();
-            newPost.setPushId(pushId);
-            pushRef.setValue(newPost);
-
+            post.setPushId(pushId);
+            pushRef.setValue(post);
 
             Intent intent = new Intent(NewPostActivity.this, PostActivity.class);
             intent.putExtra("category", Parcels.wrap(mCategory));
-
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
+            finish();
         }
 
     }
