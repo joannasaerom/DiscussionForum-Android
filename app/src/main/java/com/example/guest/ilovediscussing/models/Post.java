@@ -10,15 +10,17 @@ public class Post {
     String title;
     String content;
     Date date;
+    String categoryId;
     String pushId;
 
 
     public Post(){}
 
-    public Post(String title, String content) {
+    public Post(String title, String content, String categoryId) {
         this.title = title;
         this.content = content;
         this.date = new Date();
+        this.categoryId = categoryId;
     }
 
     public String getTitle() {
@@ -39,5 +41,13 @@ public class Post {
 
     public void setPushId(String pushId) {
         this.pushId = pushId;
+    }
+
+    public String getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
     }
 }

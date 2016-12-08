@@ -25,6 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -49,7 +50,9 @@ public class PostActivity extends AppCompatActivity implements View.OnClickListe
         ButterKnife.bind(this);
 
        mCategory = Parcels.unwrap(getIntent().getParcelableExtra("category"));
+
         mCategoryPushId = mCategory.getPushId();
+
         mCategoryName.setText(mCategory.getName());
 
         mPostReference = FirebaseDatabase

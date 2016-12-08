@@ -58,7 +58,7 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
                 return;
             }
 
-            Post post = new Post(title, content);
+            Post post = new Post(title, content, mCategoryPushId);
 
             mPostReference = FirebaseDatabase
                     .getInstance()

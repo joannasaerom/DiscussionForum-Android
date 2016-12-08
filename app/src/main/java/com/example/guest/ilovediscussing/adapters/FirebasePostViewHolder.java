@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.database.DatabaseUtilsCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -11,6 +12,7 @@ import com.example.guest.ilovediscussing.Constants;
 import com.example.guest.ilovediscussing.R;
 import com.example.guest.ilovediscussing.models.Post;
 import com.example.guest.ilovediscussing.ui.PostActivity;
+import com.example.guest.ilovediscussing.ui.PostDetailActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,8 +25,10 @@ import java.util.ArrayList;
 
 
 public class FirebasePostViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
     View mView;
     Context mContext;
+    private Post mPost;
 
     public FirebasePostViewHolder(View itemView){
         super(itemView);
@@ -34,6 +38,7 @@ public class FirebasePostViewHolder extends RecyclerView.ViewHolder implements V
     }
 
     public void bindPost(Post post){
+        mPost = post;
         TextView postTitleTextView = (TextView) mView.findViewById(R.id.postTitleTextView);
         TextView postPreviewTextView = (TextView) mView.findViewById(R.id.postPreviewTextView);
 
@@ -44,28 +49,13 @@ public class FirebasePostViewHolder extends RecyclerView.ViewHolder implements V
 
     @Override
     public void onClick(View view){
-        final ArrayList<Post> posts = new ArrayList<>();
 
-        DatabaseReference ref = FirebaseDatabase
-                .getInstance()
-                .getReference(Constants.FIREBASE_CHILD_POSTS);
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    posts.add(snapshot.getValue(Post.class));
-                }
-                int itemPosition = getLayoutPosition();
-//                Intent intent = new Intent(mContext, PostActivity.class);
-//                intent.putExtra("post", Parcels.wrap(posts.get(itemPosition)));
-//                mContext.startActivity(intent);
-            }
+        Intent intent = new Intent(mContext, PostDetailActivity.class);
+        intent.putExtra("post", Parcels.wrap(mPost));
+        mContext.startActivity(intent);
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
 
-            }
-        });
+
     }
 
 }

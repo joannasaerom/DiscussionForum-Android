@@ -104,6 +104,7 @@ public class CategoryListActivity extends AppCompatActivity implements View.OnCl
             category.setPushId(pushId);
             pushRef.setValue(category);
 
+
             startActivity(getIntent());
 
         }
