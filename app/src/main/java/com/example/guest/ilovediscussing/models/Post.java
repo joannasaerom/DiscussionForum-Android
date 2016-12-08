@@ -12,15 +12,19 @@ public class Post {
     Date date;
     String categoryId;
     String pushId;
+    String userId;
+    String userName;
 
 
     public Post(){}
 
-    public Post(String title, String content, String categoryId) {
+    public Post(String title, String content, String categoryId, String userId, String userName) {
         this.title = title;
         this.content = content;
         this.date = new Date();
         this.categoryId = categoryId;
+        this.userId = userId;
+        this.userName = userName;
     }
 
     public String getTitle() {
@@ -49,5 +53,17 @@ public class Post {
 
     public void setCategoryId(String categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
     }
 }

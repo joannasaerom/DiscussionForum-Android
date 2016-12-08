@@ -4,34 +4,24 @@ import org.parceler.Parcel;
 
 @Parcel
 public class User {
-    String username;
-    String password;
+    String name;
     String email;
     String uId;
 
     public User() {}
 
-    public User(String username, String password, String email) {
-        this.username = username;
-        this.password = password;
+    public User(String name, String email) {
+        this.name = name;
         this.email = email;
     }
 
 
     public String getUsername() {
-        return username;
+        return name;
     }
 
     public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+        this.name = username;
     }
 
     public String getEmail() {
@@ -40,5 +30,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getuId() {
+        return uId;
+    }
+
+    public void setuId(String uId) {
+        this.uId = uId;
     }
 }

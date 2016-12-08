@@ -12,6 +12,8 @@ import com.example.guest.ilovediscussing.Constants;
 import com.example.guest.ilovediscussing.R;
 import com.example.guest.ilovediscussing.models.Category;
 import com.example.guest.ilovediscussing.models.Post;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -58,7 +60,11 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
                 return;
             }
 
-            Post post = new Post(title, content, mCategoryPushId);
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String uid = user.getUid();
+            String userName = user.getDisplayName();
+
+            Post post = new Post(title, content, mCategoryPushId, uid, userName);
 
             mPostReference = FirebaseDatabase
                     .getInstance()

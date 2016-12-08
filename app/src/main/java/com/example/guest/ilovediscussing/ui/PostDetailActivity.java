@@ -16,6 +16,8 @@ import com.example.guest.ilovediscussing.adapters.FirebaseCommentViewHolder;
 import com.example.guest.ilovediscussing.models.Comment;
 import com.example.guest.ilovediscussing.models.Post;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -89,7 +91,14 @@ public class PostDetailActivity extends AppCompatActivity implements View.OnClic
                 return;
             }
             String postId = mPost.getPushId();
-            Comment newComment = new Comment(comment, postId);
+
+            FirebaseUser user = FirebaseAuth
+                    .getInstance()
+                    .getCurrentUser();
+            String uid = user.getUid();
+            String userName = user.getDisplayName();
+
+            Comment newComment = new Comment(comment, postId, uid, userName);
 
             DatabaseReference pushRef = mCommentReference.push();
             String pushId = pushRef.getKey();

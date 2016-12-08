@@ -41,9 +41,11 @@ public class FirebasePostViewHolder extends RecyclerView.ViewHolder implements V
         mPost = post;
         TextView postTitleTextView = (TextView) mView.findViewById(R.id.postTitleTextView);
         TextView postPreviewTextView = (TextView) mView.findViewById(R.id.postPreviewTextView);
+        TextView postUserTextView = (TextView) mView.findViewById(R.id.userTextView);
 
         postTitleTextView.setText(post.getTitle());
         postPreviewTextView.setText(post.getContent());
+        postUserTextView.setText("Posted by " + post.getUserName());
 
     }
 

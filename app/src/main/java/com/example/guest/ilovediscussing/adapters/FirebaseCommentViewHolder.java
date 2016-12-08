@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.example.guest.ilovediscussing.R;
 import com.example.guest.ilovediscussing.models.Comment;
+import com.google.firebase.auth.FirebaseUser;
 
 /**
  * Created by joannaanderson on 12/8/16.
@@ -27,7 +28,10 @@ public class FirebaseCommentViewHolder extends RecyclerView.ViewHolder {
     public void bindComment(Comment comment){
         mComment = comment;
         TextView commentTextView = (TextView) mView.findViewById(R.id.commentTextView);
+        TextView userTextView = (TextView) mView.findViewById(R.id.userTextView);
+
         commentTextView.setText(comment.getContent());
+        userTextView.setText("Comment by " + comment.getUserName());
     }
 }
 
